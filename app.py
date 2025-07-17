@@ -10,7 +10,6 @@ st.set_page_config(
 )
 
 # --- CARREGAMENTO DOS MODELOS (com cache para performance) ---
-# Esta função carrega os modelos apenas uma vez, melhorando a velocidade do app.
 @st.cache_resource
 def carregar_modelos():
     """
@@ -19,7 +18,7 @@ def carregar_modelos():
     """
     try:
         # Carrega o modelo original para pegar a camada de pré-processamento
-        model_original = tf.keras.models.load_model('modelo_tweet.keras')
+        model_original = tf.keras.models.load_model('modelo_final_tweet.keras')
         # ATENÇÃO: Use o nome correto da sua camada de TextVectorization aqui!
         text_vectorization_layer = model_original.get_layer('text_vectorization') 
         print("Camada de Vetorização carregada.")
@@ -78,11 +77,12 @@ st.markdown("---")
 
 # Exemplos prontos
 st.subheader("💡 Experimente com exemplos prontos")
-col1, col2, col3 = st.columns(3)
+# ALTERAÇÃO: Mudei de 3 colunas para 2
+col1, col2 = st.columns(2)
 
 frase_positiva = "this is a great tweet and the model is going to work perfectly"
 frase_negativa = "what an awful post, I'm not happy with this at all"
-frase_neutra = "this model was trained on a specific dataset"
+# ALTERAÇÃO: Variável 'frase_neutra' foi removida
 
 with col1:
     if st.button("Exemplo Positivo"):
@@ -90,16 +90,15 @@ with col1:
 with col2:
     if st.button("Exemplo Negativo"):
         st.session_state.texto_usuario = frase_negativa
-with col3:
-    if st.button("Exemplo Neutro"):
-        st.session_state.texto_usuario = frase_neutra
+
+# ALTERAÇÃO: O bloco de código da 'col3' com o botão "Exemplo Neutro" foi completamente removido.
 
 # Área de texto para o usuário
 texto_input = st.text_area(
     "Ou digite seu próprio texto abaixo (em Inglês):", 
-    value=st.session_state.get("texto_usuario", ""), # Usa o valor do botão ou fica em branco
+    value=st.session_state.get("texto_usuario", ""), 
     height=150,
-    key="texto_usuario" # Chave para manter o estado
+    key="texto_usuario" 
 )
 
 # Botão para analisar
