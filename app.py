@@ -2,7 +2,6 @@ import streamlit as st
 import tensorflow as tf
 import numpy as np
 
-# --- CONFIGURAÇÃO DA PÁGINA ---
 st.set_page_config(
     page_title="Análise de Sentimentos",
     page_icon="🤖",
@@ -19,7 +18,6 @@ def carregar_modelos():
     try:
         # Carrega o modelo original para pegar a camada de pré-processamento
         model_original = tf.keras.models.load_model('modelo_final_tweet.keras')
-        # ATENÇÃO: Use o nome correto da sua camada de TextVectorization aqui!
         text_vectorization_layer = model_original.get_layer('text_vectorization') 
         print("Camada de Vetorização carregada.")
 
@@ -38,7 +36,6 @@ def carregar_modelos():
 vectorizer, interpreter = carregar_modelos()
 
 # --- FUNÇÃO DE PREDIÇÃO ---
-# --- FUNÇÃO DE PREDIÇÃO (CORRIGIDA) ---
 def prever_sentimento(texto):
     """
     Recebe um texto, pré-processa e retorna o sentimento e a probabilidade.
