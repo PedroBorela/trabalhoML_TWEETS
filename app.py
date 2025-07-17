@@ -38,6 +38,7 @@ def carregar_modelos():
 vectorizer, interpreter = carregar_modelos()
 
 # --- FUNÇÃO DE PREDIÇÃO ---
+# --- FUNÇÃO DE PREDIÇÃO (CORRIGIDA) ---
 def prever_sentimento(texto):
     """
     Recebe um texto, pré-processa e retorna o sentimento e a probabilidade.
@@ -61,11 +62,13 @@ def prever_sentimento(texto):
     # 4. Obter o resultado
     predicao = interpreter.get_tensor(output_details[0]['index'])
     
-    probabilidade = predicao[0][0]
+    # ---- LINHA ALTERADA ----
+    # Converte o resultado para um float padrão do Python. Isso evita erros de tipo e precisão.
+    probabilidade = float(predicao[0][0])
+    
     sentimento = "Positivo" if probabilidade > 0.5 else "Negativo"
     
     return sentimento, probabilidade
-
 # --- INTERFACE DO USUÁRIO (UI) ---
 st.title("🤖 Análise de Sentimentos de Texto")
 st.write(
