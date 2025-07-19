@@ -3,8 +3,11 @@
 Este é um projeto de Processamento de Linguagem Natural (PLN) que consiste em uma aplicação web interativa para análise de sentimentos. A aplicação utiliza um modelo de Deep Learning (LSTM) treinado para classificar textos em inglês como "Positivo" ou "Negativo" e é construída com Streamlit para permitir testes diretamente no navegador.
 
 ##  Acurácia
-
+# Primeiro treinamento
 ![Acurácia do modelo de Análise de Sentimentos](image.png)
+
+# Treinamento final
+![Acurácia do modelo de Análise de Sentimentos](acuracia.png)
 
 ##  Objetivo da Aplicação
 
